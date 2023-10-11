@@ -50,7 +50,7 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/Methane_final.csv"
+              "url": "Methane_final.csv"
             },
             "key": "country",
             "fields": ["emissions"]
@@ -74,3 +74,4 @@
     }
   ]
 }
+
