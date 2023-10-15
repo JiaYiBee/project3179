@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Electricity generated from wind power in 5 countries over time",
+  "title": "Electricity generated from wind power in 5 countries in (Twh) over time",
+  "width": 380,
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/08%20wind-generation.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Entity",
+        "oneOf": ["United States", "China", "India", "Russia", "Australia"]
+      }
+    },
+    {
+      "filter": {
+        "field": "Year",
+        "timeUnit": "year",
+        "range": [1990, 2020]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": { "field": "Electricity from wind (TWh)", "type": "quantitative" },
+        "color": { "field": "Entity", "type": "nominal" },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal" },
+          { "field": "Year", "type": "temporal" },
+          { "field": "Electricity from wind (TWh)", "type": "quantitative" }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [{ "Year": "2020", "Electricity from wind (TWh)": 466.5 }]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -200,
+        "dy": 10
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": { "field": "Electricity from wind (TWh)", "type": "quantitative" },
+        "text": {
+          "value": "China is the largest producer of wind power in 2020",
+          "condition": {
+            "test": "datum['Electricity from wind (TWh)'] > 466.5",
+            "value": "China is the largest producer of wind power in 2020"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [{ "Year": "2015", "Electricity from wind (TWh)": 190.72 }]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": { "field": "Electricity from wind (TWh)", "type": "quantitative" },
+        "text": {
+          "value": "China surpassed the United States in 2015"
+        }
+      }
+    }
+  ]
+}

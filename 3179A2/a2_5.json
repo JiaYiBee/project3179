@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Sea Level Data From 1993 to 2014",
+    "anchor": "middle",
+    "color": "black"
+  },
+  "description": "The increasing of Sea level",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/csiro_alt_gmsl_mo_2015.csv"
+  },
+
+  "vconcat": [
+    {
+      "width": 352,
+      "height": 300,
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "Time",
+          "type": "temporal",
+          "scale": { "domain": { "param": "brush" } },
+          "axis": { "title": "" }
+        },
+        "y": { "field": "GMSL", "type": "quantitative" },
+        "tooltip": [
+          { "field": "Time", "type": "temporal", "title": "Date" },
+          {
+            "field": "GMSL",
+            "type": "quantitative",
+            "title": "Global Mean Sea Level"
+          }
+        ]
+      }
+    },
+    {
+      "width": 352,
+      "height": 30,
+      "mark": "line",
+      "params": [
+        {
+          "name": "brush",
+          "select": { "type": "interval", "encodings": ["x"] }
+        }
+      ],
+      "encoding": {
+        "x": { "field": "Time", "type": "temporal" },
+        "y": {
+          "field": "GMSL",
+          "type": "quantitative",
+          "axis": { "tickCount": 3, "grid": false }
+        }
+      }
+    }
+  ]
+}

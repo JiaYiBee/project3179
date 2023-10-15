@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Percerntage of electricity from renewables energy in 5 countries over time",
+  "title": "Percentage of Electricity from Renewables in 5 Countries over Time",
+  "width": 289,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/04%20share-electricity-renewables.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Entity",
+        "oneOf": ["United States", "China", "India", "Russia", "Australia"]
+      }
+    },
+    {
+      "filter": {
+        "field": "Year",
+        "timeUnit": "year",
+        "range": [1990, 2020]
+      }
+    }
+  ],
+  "mark": "area",
+  "encoding": {
+    "x": { "field": "Year", "type": "temporal" },
+    "y": { "field": "Renewables (% electricity)", "type": "quantitative" },
+    "color": { "field": "Entity", "type": "nominal" },
+    "tooltip": [
+      { "field": "Entity", "type": "nominal" },
+      { "field": "Year", "type": "temporal" },
+      {
+        "field": "Renewables (% electricity)",
+        "type": "quantitative",
+        "format": ".2f"
+      }
+    ]
+  }
+}

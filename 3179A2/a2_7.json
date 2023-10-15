@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Electricity generated from hydro power in 5 countries over time",
+  "title": "Electricity generated from hydro power in 5 countries in (Twh) over time",
+  "width": 380,
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/05%20hydropower-consumption.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Entity",
+        "oneOf": ["United States", "China", "India", "Russia", "Australia"]
+      }
+    },
+    {
+      "filter": {
+        "field": "Year",
+        "timeUnit": "year",
+        "range": [1990, 2020]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": {
+          "field": "Electricity from hydro (TWh)",
+          "type": "quantitative"
+        },
+        "color": { "field": "Entity", "type": "nominal" },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal" },
+          { "field": "Year", "type": "temporal" },
+          { "field": "Electricity from hydro (TWh)", "type": "quantitative" }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [{ "Year": "2012", "Electricity from hydro (TWh)": 862.79 }]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": 10
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": {
+          "field": "Electricity from hydro (TWh)",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Hydro power generation is constantly increasing in China"
+        }
+      }
+    }
+  ]
+}

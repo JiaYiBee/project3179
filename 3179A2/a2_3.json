@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Extent of Artic Sea Ice in September since 1979",
+  "title": "Extent of Artic Sea Ice in September since 1979",
+  "width": 350,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiaYiBee/project3179/main/Vega%20Lite/arctic_ice_extent.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "aqua",
+        "opacity": 0.5
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "temporal", "title": "Year" },
+        "y": {
+          "field": "extent",
+          "type": "quantitative",
+          "title": "Extent in million KM(sq)"
+        },
+        "tooltip": [
+          { "field": "year", "type": "temporal", "title": "Year" },
+          {
+            "field": "extent",
+            "type": "quantitative",
+            "title": "Extent in million KM(sq)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [{ "year": "2012", "extent": 3.387 }]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "temporal" },
+        "y": { "field": "extent", "type": "quantitative" },
+        "text": {
+          "value": "Greatest Artic Ice Meltdown during 2012"
+        }
+      }
+    }
+  ]
+}
