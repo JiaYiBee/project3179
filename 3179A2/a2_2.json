@@ -6,6 +6,7 @@
   "params": [
     {
       "name": "yearSelect",
+      "value": "2019-2021",
       "bind": {
         "input": "select",
         "options": ["2019-2021", 2022],
